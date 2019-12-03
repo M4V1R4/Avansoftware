@@ -20,14 +20,20 @@
             case 'store':
                 $controller->store();
                 break;
+            case 'register':
+                $controller->register();
+                break;
+            case 'see':
+                $controller->see($login);
+                break;
             case 'edit':
-                $controller->edit();
+                $controller->edit($login);
                 break;
             case 'update':
                 $controller->update();
                 break;
             case 'destroy':
-                $controller->destroy();
+                $controller->destroy($login);
                 break;
             default:
                 $controller->index();
