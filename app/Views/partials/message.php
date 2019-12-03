@@ -1,5 +1,6 @@
 <?php
-    if (isset($message)) {
+
+    if (isset($message) && !empty($message->getMessage())) {
         echo "<div class=\"row\">";
         echo "<div class=\"col-md-6\">";
 
