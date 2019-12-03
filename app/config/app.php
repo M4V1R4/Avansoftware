@@ -18,8 +18,8 @@ return [
     | En esta sección se definen los parámetros de conexión a BD
     */
     'server'   => 'localhost',
-    'database' => 'simplelogin',
-    'user'     => 'isw613',
+    'database' => 'isw613_questionnaires',
+    'user'     => 'isw613_user',
     'password' => 'secret',
 
 ];
