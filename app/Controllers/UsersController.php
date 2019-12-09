@@ -129,11 +129,10 @@ class UsersController
         $id = isset($_GET['id']) ? $_GET['id'] : null;
         $this->userModel = new User($this->config);
         $user = $this->userModel->getUser($id);
-        
         view("users/edit.php", compact("user"));
     }
 
-    public function update(){
+    public function update($login){
         $message = new Message();
 
         $id = isset($_GET['id']) ? $_GET['id'] : null;
@@ -150,7 +149,7 @@ class UsersController
         if ((ltrim($fullname) == "") || (ltrim($username) == "") || (ltrim($password) == ""))
         {
             $message->setWarningMessage(null, "Todos los campos son requeridos", null, true);
-            view("users/edit.php", compact("message", "fullname", "username", "password", "role", "blocked"));
+            view("users/edit.php", compact("message","id", "fullname", "username", "password", "role", "blocked"));
             exit;
         }
 
