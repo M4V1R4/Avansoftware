@@ -31,17 +31,17 @@
                     <td><?= ($record["role"] == "S") ? "Superusuario" : "Regular"; ?></td>
                     <td><?= ($record["blocked"] == "Y" ) ? "Bloqueado" : "Desbloqueado"; ?></td>
                     <td class="text-center">
-                        <a href="/users/index.php?action=see&id=<?= $record["id"] ?>">
+                        <a href="/users/index.php?action=see&id=<?= $record["id"] ?>" style="color:#2f3030;">
                             <i class="fas fa-eye"></i>
                         </a>
                     </td>
                     <td class="text-center">
-                        <a href="/users/index.php?action=edit&id=<?= $record["id"] ?>">
-                            <i class="fas fa-edit"></i>
+                        <a href="/users/index.php?action=edit&id=<?= $record["id"] ?>" style="color:#2f3030;">
+                            <i class="fas fa-edit" ></i>
                         </a>
                     </td>
                     <td class="text-center">
-                        <a href="/users/index.php?action=destroy&id=<?= $record["id"] ?>">
+                        <a href="/users/index.php?action=destroy&id=<?= $record["id"] ?>" style="color:#2f3030;">
                             <i class="fas fa-trash"></i>
                         </a>
                     </td>
