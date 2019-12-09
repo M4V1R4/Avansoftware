@@ -15,7 +15,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/questionnaires/index.php">Cuestionarios a responder</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="/questionnaires/index.php?action=new">Ver mis resultados</a>
+          <a class="dropdown-item" href="/questionnaires/results.php">Ver mis resultados</a>
         </div>
       </li>
         <?php if ($_SESSION['login']['role'] == 'S') : ?>
@@ -26,7 +26,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="/users/index.php">Mantenimiento de usuarios</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/users/index.php?action=create">Mantenimiento de Cuestionarios</a>
+              <a class="dropdown-item" href="/questionnaires/index.php?action=maintenance">Mantenimiento de Cuestionarios</a>
             </div>
           </li>
           <li class="nav-item dropdown">
