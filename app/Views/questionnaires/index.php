@@ -1,8 +1,8 @@
 <?php include VIEWS.'/partials/header.php' ?>
 <?php include VIEWS.'/partials/navbar.php' ?>
   
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
             <br>
             <h1 class="text-center">Índice de Cuestionarios</h1>
             <hr>
@@ -20,7 +20,7 @@
                     <th scope="row"><?= $record["id"] ?></th>
                     <td><?= $record["description"] ?></td>
                     <td class="text-center">
-                        <a type="button" class="btn btn-primary" href="/users/index.php?action=see&id=<?=$record["id"]?>" >Responder</a>
+                        <a type="button" class="btn btn-primary" href="/questionnaires/index.php?action=reply&id=<?=$record["id"]?>" >Responder</a>
                     </td>                    
                 </tr>
                 <?php endforeach; ?>
