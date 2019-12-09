@@ -30,7 +30,7 @@
                 $controller->edit($login);
                 break;
             case 'update':
-                $controller->update();
+                $controller->update($login);
                 break;
             case 'destroy':
                 $controller->destroy($login);
