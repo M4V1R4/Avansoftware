@@ -1,5 +1,6 @@
 <?php
-
+  $id = isset($id) ? $id : $user['id'];
+  var_dump($id);
   $fullname = isset($fullname) ? $fullname : $user['fullname'];
   $username = isset($username) ? $username : $user['username'];
   $password = isset($password) ? $password : "";
@@ -23,6 +24,7 @@
           <form action="/users/index.php?action=update" method="post">
             <div class="form-group">
               <label for="fullname">Nombre completo:</label>
+              <input type="hidden" value="<?=$id?>">
               <input
                 type="text" class="form-control"
                 id="fullname" name="fullname"
@@ -53,8 +55,8 @@
             <div class="form-group">
               <label for="blocked">Estado:</label>
               <select class="form-control" id="blocked" name="blocked">
-                <option value="Y" <?= isset($blocked) && ($blocked == "Y") ? "selected" : ""; ?>>Bloqueado</option>
                 <option value="N" <?= isset($blocked) && ($blocked == "N") ? "selected" : ""; ?>>Desbloqueado</option>
+                <option value="Y" <?= isset($blocked) && ($blocked == "Y") ? "selected" : ""; ?>>Bloqueado</option>
               </select>
             </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
