@@ -8,6 +8,7 @@
             <hr>
             <div class="float-right">
                 <a href="/questionnaires/index.php?action=create" type="button" class="btn btn-success">Agregar Cuestionarios</a>
+                <hr>
             </div>            
             <table class="table table-hover">
             <thead class="thead-dark">
@@ -26,7 +27,7 @@
                 <tr class="text-center">
                     <th scope="row"><?= $record["id"] ?></th>
                     <td><?= $record["description"] ?></td>
-                    <td><a href="" class="btn btn-info">Preguntas</a></td>
+                    <td><a href="/questions/index.php?action=index&id=<?= $record["id"] ?>" class="btn btn-info">Preguntas</a></td>
                     <td><a href="" class="btn btn-info">Resultados</a></td>
                 
                     <td class="text-center">
