@@ -48,6 +48,30 @@ class QuestionnaireController
         $questionnaire = $this->questionnaireModel->getQuestionnaire($id);
         view("questionnaires/edit.php", compact("questionnaire"));
     }
+    public function update(){
+        $message = new Message();
+
+        //$id = isset($_GET['id']) ? $_GET['id'] : null;
+        $id                 = $_POST["id"];
+        $description        = $_POST["description"];
+        $long_description   = $_POST["long_description"];
+        var_dump($id);
+        $questionnaireModel = new Questionnaire($this->config);
+        // $result = $questionnaireModel->userExists($username);
+
+        // Verificar que todos los inputs estén llenos
+        if ((ltrim($description) == "") || (ltrim($long_description) == ""))
+        {
+            $message->setWarningMessage(null, "Todos los campos son requeridos", null, true);
+            view("users/edit.php", compact("message","description", "long_description","id"));
+            exit;
+        }
+        // Si pasó todas la verificaciones hago el update
+        $questionnaireModel->update($description, $long_description,$id);
+        
+        $this->message->setSuccessMessage(null, "El registro se modificó correctamente", null, true);
+        $this->maintenance();
+    }
     public function destroy(){
         $id = isset($_GET['id']) ? $_GET['id'] : null;
         $this->questionnaireModel = new Questionnaire($this->config);
