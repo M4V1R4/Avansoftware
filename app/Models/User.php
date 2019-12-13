@@ -77,7 +77,7 @@
             $this->db->disconnect();
         }
 
-        public function update($id,$fullname, $username, $password, $role, $blocked){
+        public function update($fullname, $username, $password, $role, $blocked,$id){
             $this->db->connect();
 
             /* Prepared statement, stage 1: prepare */
@@ -85,9 +85,8 @@
                 $this->db->prepareSql("UPDATE users SET `fullname` = ?, `username` = ?, `passwd` = ?, `role` = ?,`blocked` = ? WHERE `id` = ?"))) {
                 echo "Prepare failed: (" .  $this->db->getError() . ") " . $this->db->getErrorMessage();
             }
-            var_dump($id);
             /* Prepared statement, stage 2: bind and execute */
-            if (!$stmt->bind_param("isssss",$id, $fullname, $username, $password, $role, $blocked)) {
+            if (!$stmt->bind_param("sssssi",$fullname, $username, $password, $role, $blocked,$id)) {
                 echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
             }
 
