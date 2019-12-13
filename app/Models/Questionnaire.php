@@ -70,6 +70,25 @@
 
             $this->db->disconnect();
         }
+        public function update($description,$long_description,$id){
+            $this->db->connect();
+            var_dump($id);
+            /* Prepared statement, stage 1: prepare */
+            if (!($stmt = 
+                $this->db->prepareSql("UPDATE questionnaires SET `description` = ?, `long_description` = ? WHERE `id` = ?"))) {
+                echo "Prepare failed: (" .  $this->db->getError() . ") " . $this->db->getErrorMessage();
+            }
+            /* Prepared statement, stage 2: bind and execute */
+            if (!$stmt->bind_param("ssi", $description, $long_description, $id)) {
+                echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+            }
+
+            if (!$stmt->execute()) {
+                echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            }
+            
+            $this->db->disconnect();
+        }
         public function insert($description, $long_description){
             $this->db->connect();
 
