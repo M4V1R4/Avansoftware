@@ -55,7 +55,26 @@
             $this->db->disconnect();
             return $this->db->nextResultRow($result);
         }
+        public function register($fullname, $username, $password, $role){
+            $this->db->connect();
 
+            /* Prepared statement, stage 1: prepare */
+            if (!($stmt = 
+                $this->db->prepareSql("INSERT INTO users(`fullname`, `username`, `passwd`, `role`) VALUES (?, ?, ?, ?)"))) {
+                echo "Prepare failed: (" .  $this->db->getError() . ") " . $this->db->getErrorMessage();
+            }
+
+            /* Prepared statement, stage 2: bind and execute */
+            if (!$stmt->bind_param("ssss", $fullname, $username, $password, $role)) {
+                echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
+            }
+
+            if (!$stmt->execute()) {
+                echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+            }
+            
+            $this->db->disconnect();
+        }
         public function insert($fullname, $username, $password, $role, $blocked){
             $this->db->connect();
 

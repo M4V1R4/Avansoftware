@@ -82,7 +82,7 @@ class UsersController
         $username         = $_POST["username"];
         $password         = $_POST["password"];
         $confirm_password = $_POST["confirm_password"];
-        $role             = "S";
+        $role             = "R";
 
         $userModel = new User($this->config);
         $result = $userModel->userExists($username);
@@ -112,11 +112,12 @@ class UsersController
         }
 
         // Si pasó todas la verificaciones hago el insert
-        $userModel->insert($fullname, $username, $password, $role);
+        $userModel->register($fullname, $username, $password, $role);
         
         //header("Location: /users/index.php");
         $this->message->setSuccessMessage(null, "El registro se agregó correctamente", null, true);
-        $this->index();
+        // $this->index();
+        header('Location: /index.php');
     }
     public function see($login){
         $id = isset($_GET['id']) ? $_GET['id'] : null;
