@@ -135,7 +135,8 @@ class UsersController
     public function update($login){
         $message = new Message();
 
-        $id = isset($_GET['id']) ? $_GET['id'] : null;
+        //$id = isset($_GET['id']) ? $_GET['id'] : null;
+        $id               = $_POST["id"];
         $fullname         = $_POST["fullname"];
         $username         = $_POST["username"];
         $password         = $_POST["password"];
@@ -149,19 +150,11 @@ class UsersController
         if ((ltrim($fullname) == "") || (ltrim($username) == "") || (ltrim($password) == ""))
         {
             $message->setWarningMessage(null, "Todos los campos son requeridos", null, true);
-            view("users/edit.php", compact("message","id", "fullname", "username", "password", "role", "blocked"));
+            view("users/edit.php", compact("message","fullname", "username", "password", "role", "blocked","id"));
             exit;
         }
-
-        // Verifico si el usuario ya existe
-        // if ($result["exists"] == 1){
-        //     $message->setWarningMessage(null, "Nombre de usuario ya existe", null, true);
-        //     view("users/create.php", compact("message", "fullname", "username", "password", "role", "blocked" ));
-        //     exit;
-        // }
-
         // Si pasó todas la verificaciones hago el update
-        $userModel->update($id,$fullname, $username, $password, $role, $blocked);
+        $userModel->update($fullname, $username, $password, $role, $blocked,$id);
         
         //header("Location: /users/index.php");
         $this->message->setSuccessMessage(null, "El registro se modificó correctamente", null, true);

@@ -34,11 +34,11 @@
               Reportes
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/users/index.php">Reporte por empleado</a>
+              <a class="dropdown-item" href="/reports/index.php">Reporte por empleado</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/users/index.php?action=create">Reporte por cuestionario</a>
+              <a class="dropdown-item" href="/reports/index.php?action=report_ques">Reporte por cuestionario</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/users/index.php?action=create">Gráfico Top 10</a>
+              <a class="dropdown-item" href="/reports/index.php?action=create">Gráfico Top 10</a>
             </div>
           </li>
 

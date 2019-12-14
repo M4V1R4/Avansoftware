@@ -8,7 +8,7 @@
     </div>
     <div class="wrapper">
         <form action="/users/index.php?action=register"class="form-signin" method="POST">
-            <h2 class="form-signin-title text-center">Registro usuari</h2>
+            <h2 class="form-signin-title text-center">Registro usuarios</h2>
             <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Nombre Completo" value="<?= isset($fullname) ? $fullname : ""; ?>" autofocus="" />
             <input type="text" class="form-control" id="username" name="username" placeholder="Usuario" required="" value="<?= isset($username) ? $username : ""; ?>"/>
             <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required="" value="<?= isset($password) ? $password : ""; ?>"/>

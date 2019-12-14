@@ -8,7 +8,7 @@ return [
     |------------------------------------------------------------------
     | Definir en los parámetros generales de la aplicación
     */
-    'debug'    => true,
+    'debug'    => false,
     'public'   => "/",
 
     /*

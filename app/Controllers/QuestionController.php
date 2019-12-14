@@ -65,27 +65,28 @@ class QuestionController
         }
     }
     public function create(){
-        view("questionnaires/create.php");
+        view("questions/create.php");
     }
     public function store(){
         $message = new Message();
-        $description         = $_POST["description"];
-        $long_description         = $_POST["long_description"];
+        $questionnaire_id   = $_POST["questionnaire_id"];
+        $question_text      = $_POST["question_text"];
 
-        $questionnaireModel = new Questionnaire($this->config);
+        $questionModel = new Question($this->config);
         
 
         // Verificar que todos los inputs estén llenos
-        if ((ltrim($description) == "") || (ltrim($long_description) == ""))
+        if ((ltrim($question_text) == ""))
         {
             $message->setWarningMessage(null, "Todos los campos son requeridos", null, true);
-            view("questionnaires/create.php", compact("message", "description", "long_description"));
+            view("questions/create.php", compact("message", "questionnaire_id", "question_text"));
             exit;
         }
         // Si pasó todas la verificaciones hago el insert
-        $questionnaireModel->insert($description, $long_description);
+        $questionModel->insert($questionnaire_id, $question_text);
         $this->message->setSuccessMessage(null, "El registro se agregó correctamente", null, true);
-        $this->maintenance();
+        // view("questions/index.php&id=".$questionnaire_id);
+        header('Location: index.php'.'?action=index&id='.$questionnaire_id);
     }
 }
 }

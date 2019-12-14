@@ -2,7 +2,7 @@
     
     use \EasilyPHP\Database\DBMySQL;
 
-    class Question
+    class Report
     {
         private $db = null;
 
@@ -12,26 +12,30 @@
                 $config['user'], $config['password']);
         }
 
-        // Use the id from questionnaire
-        public function getAllQuestions($id){
+        public function getAllQuestionnairesByUser($id){
             $this->db->connect();
-            $result = $this->db->runSql("SELECT * FROM questions WHERE questionnaire_id = $id");
+            $result = $this->db->runSql("SELECT * FROM questionnaires WHERE id NOT IN
+            (   SELECT users_questionnaires.id FROM users_questionnaires
+                JOIN questionnaires ON (questionnaires.id = users_questionnaires.questionnaire_id)
+                WHERE users_questionnaires.user_id = '". $id . "')" );
             $this->db->disconnect();
             return $this->db->getAll($result);
         }
-        public function getQuestion($id){
+        public function getAllUsers(){
+            $this->db->connect();
+            $result = $this->db->runSql("SELECT * FROM users_questionnaires");
+            var_dump($result);
+            $this->db->disconnect();
+            return $this->db->getAll($result);
+        }
+        public function getQuestionnaire($id){
             $this->db->connect();
 
             /* Prepared statement, stage 1: prepare */
             if (!($stmt = 
-                $this->db->prepareSql("SELECT questionnaires.description,questions.id, questions.question_text FROM questionnaires 
-                JOIN questions ON (questionnaires.id = questions.questionnaires_id) AND id = ?"))) {
+                $this->db->prepareSql("SELECT * FROM questionnaires WHERE `id` = ?"))) {
                 echo "Prepare failed: (" .  $this->db->getError() . ") " . $this->db->getErrorMessage();
             }
-            // if (!($stmt = 
-            //     $this->db->prepareSql("SELECT * FROM questions WHERE id = ?"))) {
-            //     echo "Prepare failed: (" .  $this->db->getError() . ") " . $this->db->getErrorMessage();
-            // }
 
             /* Prepared statement, stage 2: bind and execute */
             if (!$stmt->bind_param("i", $id)) {
@@ -52,7 +56,7 @@
 
             /* Prepared statement, stage 1: prepare */
             if (!($stmt = 
-                $this->db->prepareSql("DELETE FROM questions WHERE `id` = ?"))) {
+                $this->db->prepareSql("DELETE FROM questionnaires WHERE `id` = ?"))) {
                 echo "Prepare failed: (" .  $this->db->getError() . ") " . $this->db->getErrorMessage();
             }
 
@@ -66,27 +70,7 @@
             }
 
             $this->db->disconnect();
-        }
-        public function insert($questionnaire_id, $question_text){
-            $this->db->connect();
-
-            /* Prepared statement, stage 1: prepare */
-            if (!($stmt = 
-                $this->db->prepareSql("INSERT INTO questions(`questionnaire_id`, `question_text`) VALUES (?, ?)"))) {
-                echo "Prepare failed: (" .  $this->db->getError() . ") " . $this->db->getErrorMessage();
-            }
-
-            /* Prepared statement, stage 2: bind and execute */
-            if (!$stmt->bind_param("is", $questionnaire_id, $question_text)) {
-                echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
-            }
-
-            if (!$stmt->execute()) {
-                echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-            }
-            
-            $this->db->disconnect();
-        }     
+        }    
        
     }
 }

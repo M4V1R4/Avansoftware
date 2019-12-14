@@ -17,8 +17,9 @@
           <h1 class="text-center">Editar Cuestionario</h1>
           <hr>
           <!-- Inicia el formulario de edit -->
-          <form action="/users/index.php?action=update" method="post">
+          <form action="/questionnaires/index.php?action=update" method="post">
           <div class="form-group">
+              <input  id="id" name="id" type="hidden" value="<?=$id?>">
               <label for="description">Descripción:</label>
               <input
                 type="text" class="form-control"

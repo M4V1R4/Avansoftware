@@ -1,6 +1,9 @@
 <?php include VIEWS.'/partials/header.php' ?>
-<?php include VIEWS.'/partials/navbar.php' ?>
-  
+<?php include VIEWS.'/partials/navbar.php'?>
+<?php $id = $_GET['id'];
+    var_dump($id);
+?>
+
     <div class="row justify-content-center">
         <div class="col-md-10">
             <br>
@@ -8,7 +11,7 @@
             <hr>
             <div class="float-right">
                 <a href="/questionnaires/index.php?action=maintenance" type="button" class="btn btn-secondary">Regresar a la lista cuestionarios</a>
-                <a href="/questions/index.php?action=create" type="button" class="btn btn-success">Agregar Preguntas</a>
+                <a href="/questions/index.php?action=create&id=<?=$id?>" type="button" class="btn btn-success">Agregar Preguntas</a>
                 <hr>
             </div>            
             <table class="table table-hover">

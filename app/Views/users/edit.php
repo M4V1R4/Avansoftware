@@ -1,6 +1,5 @@
 <?php
   $id = isset($id) ? $id : $user['id'];
-  var_dump($id);
   $fullname = isset($fullname) ? $fullname : $user['fullname'];
   $username = isset($username) ? $username : $user['username'];
   $password = isset($password) ? $password : "";
@@ -23,8 +22,8 @@
           <!-- Inicia el formulario de create -->
           <form action="/users/index.php?action=update" method="post">
             <div class="form-group">
+              <input  id="id" name="id" type="hidden" value="<?=$id?>">
               <label for="fullname">Nombre completo:</label>
-              <input type="hidden" value="<?=$id?>">
               <input
                 type="text" class="form-control"
                 id="fullname" name="fullname"
